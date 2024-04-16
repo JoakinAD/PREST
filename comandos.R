@@ -1,5 +1,6 @@
-# Una vez escogido el filepath del archivo mediante file_path <- "/path/to/your/PREST-2324-DatosTrabajo.xlsx", en mi caso:
-file_path <- "~/Documents/3/2/PREST/PREST-2324-DatosTrabajo.xlsx"
+#EJERCICIO 2
+
+# Una vez escogido el filepath del archivo mediante file_path <- "/path/to/your/PREST-2324-DatosTrabajo.xlsx"
 
 # Cargar la librería readxl
 library(readxl)
