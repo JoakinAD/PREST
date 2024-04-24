@@ -1,5 +1,5 @@
 # Una vez escogido el filepath del archivo mediante file_path <- "/path/to/your/PREST-2324-DatosTrabajo.xlsx", en mi caso:
-file_path <- "~/Documents/3/2/PREST/PREST-2324-DatosTrabajo.xlsx"
+file_path <- "~/Escritorio/PRESTvis/PREST-2324-DatosTrabajo.xlsx"
 
 # Cargar la librería readxl
 library(readxl)
@@ -25,8 +25,10 @@ sd_galicia <- sd(datos1_total$Galicia)
 sd_madrid <- sd(datos1_total$Madrid)
 sd_murcia <- sd(datos1_total$Murcia)
 
+
 # Crear un data frame para visualizar mejor los resultados
-resultados_total <- data.frame(
+resultados_total <- data.frame( 
+  
   Comunidad = c("Galicia", "Madrid", "Murcia"),
   Media_Edad = c(media_galicia, media_madrid, media_murcia),
   SD_Edad = c(sd_galicia, sd_madrid, sd_murcia)
@@ -42,14 +44,18 @@ cuartiles_madrid <- quantile(datos1_total$Madrid, probs = c(0.25, 0.5, 0.75))
 cuartiles_murcia <- quantile(datos1_total$Murcia, probs = c(0.25, 0.5, 0.75))
 
 # Crear un data frame para visualizar mejor los cuartiles
-resultados_cuartiles <- data.frame(
-  Comunidad = rep(c("Galicia", "Madrid", "Murcia"), each = 3),
-  Cuartil = rep(c("Q1", "Q2", "Q3"), 3),
-  Valor = c(cuartiles_galicia, cuartiles_madrid, cuartiles_murcia)
+cuartiles <- data.frame(
+  comunidad = c("Galicia", "Madrid", "Murcia"),
+  Q1 = c(cuartiles_galicia[1], cuartiles_madrid[1], cuartiles_murcia[1]),
+  Q2 = c(cuartiles_galicia[2], cuartiles_madrid[2], cuartiles_murcia[2]),
+  Q3 = c(cuartiles_galicia[3], cuartiles_madrid[3], cuartiles_murcia[3])
+  
 )
 
 # Imprimir los cuartiles
-print(resultados_cuartiles)
+print(cuartiles)
+
+
 # Calcular el rango intercuartílico (IQR) y definir límites para detectar valores atípicos en cada comunidad
 IQR_galicia <- IQR(datos1_total$Galicia)
 limite_inferior_galicia <- cuartiles_galicia[1] - 1.5 * IQR_galicia
